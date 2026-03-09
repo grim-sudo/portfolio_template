@@ -3,53 +3,120 @@
 // ═══════════════════════════════════════
 
 // ── CURSOR ──────────────────────────────
-const curDot  = document.getElementById('cur-dot');
-const curSnap = document.getElementById('cur-snap');
-const snapLbl = document.getElementById('snap-label');
-let rawX=-200, rawY=-200, dotX=-200, dotY=-200, snapActive=false;
+(function initCursor(){
+  if (window.matchMedia('(pointer: coarse)').matches) return;
 
-document.addEventListener('mousemove', e => { rawX=e.clientX; rawY=e.clientY; });
-(function follow(){
-  dotX += (rawX-dotX)*.28; dotY += (rawY-dotY)*.28;
-  curDot.style.left=dotX+'px'; curDot.style.top=dotY+'px';
-  requestAnimationFrame(follow);
+  const canvas = document.getElementById('cursor-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const C_GREEN  = '#00ff88';
+  const C_CYAN   = '#00d4ff';
+  const ARM      = 7;    // bracket arm length in px
+  const GAP      = 11;   // half-size of bracket box (center to corner)
+  const DOT_R    = 2;    // center dot radius
+  const SPIN     = (2 * Math.PI) / (3.4 * 60); // rad/frame
+
+  let mouseX = window.innerWidth  / 2;
+  let mouseY = window.innerHeight / 2;
+  let curX   = mouseX, curY = mouseY;
+  let curHW  = GAP,    curHH = GAP;   // current half-width / half-height of bracket box
+  let angle  = 0;
+  let locked = false;
+  let lockOpacity = 0;   // 0 = free, 1 = locked (dot fades)
+  let hoverEl = null;
+
+  document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+  function drawBrackets(cx, cy, hw, hh, ang, alpha, glow){
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(ang);
+    ctx.strokeStyle = C_GREEN;
+    ctx.lineWidth   = 1.5;
+    ctx.globalAlpha = alpha;
+    if (glow) {
+      ctx.shadowColor = C_GREEN;
+      ctx.shadowBlur  = 7;
+    }
+    // four corners: [signX, signY] pairs
+    [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([sx, sy]) => {
+      const ox = sx * hw;
+      const oy = sy * hh;
+      ctx.beginPath();
+      ctx.moveTo(ox + sx * -ARM, oy);          // horizontal arm
+      ctx.lineTo(ox, oy);
+      ctx.lineTo(ox, oy + sy * -ARM);          // vertical arm
+      ctx.stroke();
+    });
+    ctx.restore();
+  }
+
+  function drawDot(cx, cy, alpha){
+    if (alpha <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.arc(cx, cy, DOT_R, 0, Math.PI * 2);
+    ctx.fillStyle = C_GREEN;
+    ctx.shadowColor = C_GREEN;
+    ctx.shadowBlur  = 8;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  (function frame(){
+    // read rect once per frame
+    let tx = mouseX, ty = mouseY, ttHW = GAP, ttHH = GAP;
+    if (locked && hoverEl) {
+      const r = hoverEl.getBoundingClientRect();
+      tx   = r.left + r.width  / 2;
+      ty   = r.top  + r.height / 2;
+      ttHW = Math.max(GAP, r.width  / 2 + 8);
+      ttHH = Math.max(GAP, r.height / 2 + 8);
+    }
+
+    curX  += (tx   - curX)  * 0.26;
+    curY  += (ty   - curY)  * 0.26;
+    curHW += (ttHW - curHW) * 0.24;
+    curHH += (ttHH - curHH) * 0.24;
+    lockOpacity += ((locked ? 1 : 0) - lockOpacity) * 0.18;
+
+    if (!locked) {
+      angle += SPIN;
+    } else {
+      // smoothly rotate back to 0 so brackets align with element edges
+      angle += (0 - angle) * 0.14;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBrackets(curX, curY, curHW, curHH, angle, 0.92, locked);
+    drawDot(curX, curY, 1 - lockOpacity);
+
+    requestAnimationFrame(frame);
+  })();
+
+  function bindCursorHover(){
+    const els = document.querySelectorAll(
+      'a, button, [data-label], .pc, .rcard, .ach, .soc-card, .hero-tag, .hero-role, input, textarea, select'
+    );
+    els.forEach(el => {
+      el.addEventListener('mouseenter', () => { hoverEl = el; locked = true;  });
+      el.addEventListener('mouseleave', () => { hoverEl = null; locked = false; });
+    });
+  }
+
+  // expose so initApp can call after DOM is rendered
+  window._bindCursorHover = bindCursorHover;
+  bindCursorHover();
 })();
-if('ontouchstart' in window){
-  curDot.style.display='none'; curSnap.style.display='none';
-}
-
-const PAD=6;
-function snapTo(el,label){
-  const r=el.getBoundingClientRect(); snapActive=true;
-  curSnap.style.left=(r.left-PAD)+'px'; curSnap.style.top=(r.top-PAD)+'px';
-  curSnap.style.width=(r.width+PAD*2)+'px'; curSnap.style.height=(r.height+PAD*2)+'px';
-  snapLbl.style.animation='none'; void snapLbl.offsetWidth;
-  snapLbl.textContent='[ '+label.toUpperCase()+' ]';
-  snapLbl.style.animation='';
-  curSnap.classList.add('visible'); curDot.style.opacity='0';
-}
-function unsnap(){ snapActive=false; curSnap.classList.remove('visible'); curDot.style.opacity='1'; }
-
-function bindCursor(){
-  document.querySelectorAll('[data-label]').forEach(el=>{
-    el.addEventListener('mouseenter',()=>snapTo(el,el.dataset.label));
-    el.addEventListener('mouseleave',unsnap);
-  });
-  document.querySelectorAll('.nav-link').forEach(el=>{
-    const label=el.dataset.label||el.textContent.trim();
-    el.addEventListener('mouseenter',()=>snapTo(el,label));
-    el.addEventListener('mouseleave',unsnap);
-  });
-  document.querySelectorAll('.sec-title:not([data-label])').forEach(el=>{
-    el.addEventListener('mouseenter',()=>snapTo(el,el.textContent.trim().slice(0,20)));
-    el.addEventListener('mouseleave',unsnap);
-  });
-  document.querySelectorAll('.pc,.rcard,.ach,.soc-card,.btn,.hero-tag,.hero-role').forEach(el=>{
-    const label=el.querySelector('.pc-name,.rname,.at,.soc-platform')?.textContent.trim().slice(0,22)||el.textContent.trim().slice(0,18);
-    el.addEventListener('mouseenter',()=>snapTo(el,label));
-    el.addEventListener('mouseleave',unsnap);
-  });
-}
 
 // ── NAV ─────────────────────────────────
 function toggleMob(){ document.getElementById('mobmenu').classList.toggle('open'); document.getElementById('ham').classList.toggle('open'); }
@@ -883,5 +950,5 @@ function initApp(){
   initNetMap();
   initReveal();
   fetchGH();
-  bindCursor();
+  window._bindCursorHover?.(); // re-bind after dynamic content is rendered
 }

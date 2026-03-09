@@ -9,12 +9,7 @@
 <body>
 
 <!-- CURSOR -->
-<div id="cur-dot"><span>[</span><span>_</span><span>]</span></div>
-<div id="cur-snap">
-  <div class="snap-br"></div>
-  <div class="snap-bl"></div>
-  <span id="snap-label"></span>
-</div>
+<canvas id="cursor-canvas" aria-hidden="true"></canvas>
 
 <!-- NODE INFO TOOLTIP -->
 <div id="ninfo"></div>
@@ -43,12 +38,12 @@
   <nav>
     <div class="nav-logo">GRIM</div>
     <div class="nav-links">
-      <button class="nav-link" data-label="mission"  onclick="goTo('mission')">mission</button>
-      <button class="nav-link" data-label="skills"   onclick="goTo('skills')">skills</button>
-      <button class="nav-link" data-label="arsenal"  onclick="goTo('arsenal')">arsenal</button>
-      <button class="nav-link" data-label="terminal" onclick="goTo('tsec')">terminal</button>
-      <button class="nav-link" data-label="network"  onclick="goTo('nsec')">network</button>
-      <button class="nav-link" data-label="socials"  onclick="goTo('social')">socials</button>
+      <button class="nav-link" data-label="mission"  onclick="goTo('mission')">Mission</button>
+      <button class="nav-link" data-label="skills"   onclick="goTo('skills')">Skills</button>
+      <button class="nav-link" data-label="arsenal"  onclick="goTo('arsenal')">Arsenal</button>
+      <button class="nav-link" data-label="terminal" onclick="goTo('tsec')">Terminal</button>
+      <button class="nav-link" data-label="network"  onclick="goTo('nsec')">Network</button>
+      <button class="nav-link" data-label="socials"  onclick="goTo('social')">Socials</button>
     </div>
     <button id="ham" onclick="toggleMob()" aria-label="menu">
       <span></span><span></span><span></span>
@@ -57,12 +52,12 @@
 
   <!-- MOBILE MENU -->
   <div id="mobmenu">
-    <button class="mob-link" onclick="goTo('mission');closeMob()">mission</button>
-    <button class="mob-link" onclick="goTo('skills');closeMob()">skills</button>
-    <button class="mob-link" onclick="goTo('arsenal');closeMob()">arsenal</button>
-    <button class="mob-link" onclick="goTo('tsec');closeMob()">terminal</button>
-    <button class="mob-link" onclick="goTo('nsec');closeMob()">network</button>
-    <button class="mob-link" onclick="goTo('social');closeMob()">socials</button>
+    <button class="mob-link" onclick="goTo('mission');closeMob()">Mission</button>
+    <button class="mob-link" onclick="goTo('skills');closeMob()">Skills</button>
+    <button class="mob-link" onclick="goTo('arsenal');closeMob()">Arsenal</button>
+    <button class="mob-link" onclick="goTo('tsec');closeMob()">Terminal</button>
+    <button class="mob-link" onclick="goTo('nsec');closeMob()">Network</button>
+    <button class="mob-link" onclick="goTo('social');closeMob()">Socials</button>
   </div>
 
   <!-- ═══ HERO ═══════════════════════════ -->
