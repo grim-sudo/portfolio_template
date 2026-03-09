@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GRIM — Shefan Tharani</title>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur-dot"><span>[</span><span>_</span><span>]</span></div>
+<div id="cur-snap">
+  <div class="snap-br"></div>
+  <div class="snap-bl"></div>
+  <span id="snap-label"></span>
+</div>
+
+<!-- NODE INFO TOOLTIP -->
+<div id="ninfo"></div>
+
+<!-- BOOT SCREEN -->
+<div id="boot">
+  <div id="boot-left">
+    <div id="blog-wrap">
+      <div id="boot-label">// system_init</div>
+      <div id="blog"></div>
+      <div id="bbar-wrap"><div id="bbar"></div></div>
+    </div>
+  </div>
+  <div id="boot-right">
+    <canvas id="boot-canvas"></canvas>
+  </div>
+</div>
+
+<!-- MATRIX BG -->
+<canvas id="bgcanvas"></canvas>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">GRIM</div>
+    <div class="nav-links">
+      <button class="nav-link" data-label="mission"  onclick="goTo('mission')">mission</button>
+      <button class="nav-link" data-label="skills"   onclick="goTo('skills')">skills</button>
+      <button class="nav-link" data-label="arsenal"  onclick="goTo('arsenal')">arsenal</button>
+      <button class="nav-link" data-label="terminal" onclick="goTo('tsec')">terminal</button>
+      <button class="nav-link" data-label="network"  onclick="goTo('nsec')">network</button>
+      <button class="nav-link" data-label="socials"  onclick="goTo('social')">socials</button>
+    </div>
+    <button id="ham" onclick="toggleMob()" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobmenu">
+    <button class="mob-link" onclick="goTo('mission');closeMob()">mission</button>
+    <button class="mob-link" onclick="goTo('skills');closeMob()">skills</button>
+    <button class="mob-link" onclick="goTo('arsenal');closeMob()">arsenal</button>
+    <button class="mob-link" onclick="goTo('tsec');closeMob()">terminal</button>
+    <button class="mob-link" onclick="goTo('nsec');closeMob()">network</button>
+    <button class="mob-link" onclick="goTo('social');closeMob()">socials</button>
+  </div>
+
+  <!-- ═══ HERO ═══════════════════════════ -->
+  <section id="hero" class="ctos-sweep">
+    <div class="hero-dp">
+      <div class="hero-dp-item" data-k="uid:">grim-sudo</div>
+      <div class="hero-dp-item" data-k="status:">available</div>
+      <div class="hero-dp-item" data-k="platform:">arch / kali / debian</div>
+    </div>
+    <div class="hero-name" data-text="GRIM">GRIM</div>
+    <div class="hero-sub">Shefan Tharani</div>
+    <div class="hero-role">Systems Engineer // Security Researcher</div>
+    <div class="hero-tagline">Building infrastructure. Exploiting systems. Securing what matters.</div>
+
+    <!-- Identity mini card -->
+    <div class="hero-identity">
+      <span class="hi-key">UID:       </span><span class="hi-val green">grim-sudo</span><br/>
+      <span class="hi-key">ROLE:      </span><span class="hi-val">Pentester · Systems Developer · DevOps</span><br/>
+      <span class="hi-key">PLATFORM:  </span><span class="hi-val cyan">Arch / Kali / Debian</span><br/>
+      <span class="hi-key">TOOLSET:   </span><span class="hi-val cyan">BlackArch · Metasploit · Burp Suite</span><br/>
+      <span class="hi-key">SHELL:     </span><span class="hi-val">zsh / bash</span><br/>
+      <span class="hi-key">CLEARANCE: </span><span class="hi-val" style="color:var(--r)">CLASSIFIED</span>
+    </div>
+
+    <div class="hero-btns">
+      <button class="btn btn-g" data-label="terminal" onclick="goTo('tsec');setTimeout(()=>document.getElementById('tinput').focus(),400)">./terminal</button>
+      <a class="btn btn-d" data-label="github" href="https://github.com/grim-sudo" target="_blank">./github</a>
+    </div>
+    <div style="margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <span class="hero-tag">arch linux</span>
+      <span class="hero-tag">blackarch</span>
+      <span class="hero-tag">kubernetes</span>
+      <span class="hero-tag">metasploit</span>
+      <span class="hero-tag">python</span>
+      <span class="hero-tag">docker</span>
+    </div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ MISSION BRIEF ═══════════════════ -->
+  <section id="mission" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">operator_brief</div>
+    <div class="sec-title" data-label="MISSION BRIEF">Mission Brief</div>
+    <div class="mission-grid">
+      <div class="mission-block">
+        <div class="mb-label">// overview</div>
+        <div class="mb-body" id="mission-overview">
+          Systems developer and security researcher focused on
+          Linux infrastructure, container orchestration, and
+          offensive security testing. Operates at the intersection
+          of DevOps engineering and adversarial security.
+        </div>
+      </div>
+      <div class="mission-block">
+        <div class="mb-label">// platforms</div>
+        <div class="mb-body" id="mission-platforms">
+          <span class="mb-tag cyan">Arch Linux</span>
+          <span class="mb-tag cyan">Kali Linux</span>
+          <span class="mb-tag cyan">Debian</span>
+          <span class="mb-tag green">BlackArch</span>
+          <span class="mb-tag green">Ubuntu Server</span>
+        </div>
+      </div>
+      <div class="mission-block">
+        <div class="mb-label">// focus areas</div>
+        <div class="mb-body" id="mission-focus">
+          <div class="mb-focus-item">Kubernetes security &amp; container hardening</div>
+          <div class="mb-focus-item">Network reconnaissance &amp; enumeration</div>
+          <div class="mb-focus-item">Linux systems engineering &amp; kernel dev</div>
+          <div class="mb-focus-item">Offensive security labs &amp; CTF ops</div>
+        </div>
+      </div>
+      <div class="mission-block">
+        <div class="mb-label">// toolset</div>
+        <div class="mb-body" id="mission-toolset">
+          <span class="mb-tag green">Metasploit</span>
+          <span class="mb-tag green">Burp Suite</span>
+          <span class="mb-tag green">Nmap / NSE</span>
+          <span class="mb-tag">Docker</span>
+          <span class="mb-tag">Kubernetes</span>
+          <span class="mb-tag">Calico CNI</span>
+          <span class="mb-tag">iptables</span>
+          <span class="mb-tag">Shodan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ SKILLS ══════════════════════════ -->
+  <section id="skills" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">capability_matrix</div>
+    <div class="sec-title" data-label="SKILL TREE">Skill Tree</div>
+
+    <div class="skills-layout">
+      <!-- Radar Chart -->
+      <div>
+        <div class="radar-wrap">
+          <canvas id="radarChart" width="340" height="340"></canvas>
+          <div class="radar-legend" id="radar-legend"></div>
+        </div>
+      </div>
+      <!-- Skill Bars -->
+      <div id="skill-grid" class="skill-grid"></div>
+    </div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ ARSENAL ═════════════════════════ -->
+  <section id="arsenal" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">project_manifest</div>
+    <div class="sec-title" data-label="ARSENAL">Arsenal</div>
+    <div id="proj-grid" class="pgrid"></div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ TERMINAL ════════════════════════ -->
+  <section id="tsec" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">interactive_shell</div>
+    <div class="sec-title" data-label="TERMINAL">Terminal</div>
+    <div class="term-box">
+      <div class="term-bar">
+        <div class="tbar-dot td-r"></div>
+        <div class="tbar-dot td-y"></div>
+        <div class="tbar-dot td-g"></div>
+        <span class="tbar-title">grim@kali — bash</span>
+      </div>
+      <div id="tbody"></div>
+      <div class="term-input-row">
+        <span class="term-ps">grim@arch:~$</span>
+        <input id="tinput" type="text" autocomplete="off" spellcheck="false" placeholder="type 'help'"/>
+      </div>
+    </div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ NETWORK MAP ══════════════════════ -->
+  <section id="nsec" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">infrastructure_topology</div>
+    <div class="sec-title" data-label="NETWORK MAP">Network Map</div>
+    <canvas id="nmap"></canvas>
+    <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:.65em;letter-spacing:2px;color:var(--muted)"># click nodes for intel</div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ GITHUB ═══════════════════════════ -->
+  <section id="ghsec" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">git_intelligence</div>
+    <div class="sec-title" data-label="GITHUB INTEL">GitHub Intel</div>
+    <div class="ghstats">
+      <div class="ghst"><div class="ghstn" id="ghrepos">—</div><div class="ghstl">repos</div></div>
+      <div class="ghst"><div class="ghstn" id="ghfoll">—</div><div class="ghstl">followers</div></div>
+      <div class="ghst"><div class="ghstn" id="ghfing">—</div><div class="ghstl">following</div></div>
+    </div>
+    <div class="rgrid" id="rgrid">
+      <div style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.75em;padding:16px">fetching repositories...</div>
+    </div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ SOCIALS ══════════════════════════ -->
+  <section id="social" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">contact_links</div>
+    <div class="sec-title" data-label="SOCIALS">Socials</div>
+    <div id="social-grid"></div>
+  </section>
+
+  <div class="divl"></div>
+
+  <!-- ═══ ACHIEVEMENTS ═════════════════════ -->
+  <section id="achsec" class="reveal">
+    <div class="c-tl"></div><div class="c-tr"></div>
+    <div class="c-bl"></div><div class="c-br"></div>
+    <div class="sec-label">operation_log</div>
+    <div class="sec-title" data-label="ACHIEVEMENTS">Achievements</div>
+    <div class="agrid" id="ach-grid"></div>
+  </section>
+
+  <footer>
+    <div class="flogo">GRIM // grim-sudo</div>
+    <div class="finfo">shefan tharani // all connections monitored</div>
+    <div class="finfo" style="color:var(--g);opacity:.4;margin-top:4px">● uplink encrypted</div>
+  </footer>
+
+</div><!-- /app -->
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
