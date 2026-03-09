@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/png" href="assets/reaper.png"/>
 <title>GRIM — Shefan Tharani</title>
 <link rel="stylesheet" href="css/style.css"/>
 </head>
@@ -28,6 +29,25 @@
   </div>
 </div>
 
+<!-- WELCOME SCREEN -->
+<div id="welcome">
+  <div id="wc-scan"></div>
+  <div id="wc-inner">
+    <div id="wc-sig">
+      <span id="wc-handle">GRIM</span>
+      <span id="wc-sep">—</span>
+      <span id="wc-realname">Shefan Tharani</span>
+    </div>
+    <div id="wc-headline">
+      <div id="wc-top-line">Systems Engineer&nbsp;&nbsp;·&nbsp;&nbsp;Security Researcher</div>
+      <div id="wc-bigword"><span id="wc-word"></span><span id="wc-cur">█</span></div>
+      <div id="wc-bottom-line">github.com/grim-sudo</div>
+    </div>
+    <div id="wc-bar-wrap"><div id="wc-bar"></div></div>
+    <div id="wc-skip">[ press any key to enter ]</div>
+  </div>
+</div>
+
 <!-- MATRIX BG -->
 <canvas id="bgcanvas"></canvas>
 
@@ -36,7 +56,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">GRIM</div>
+    <div class="nav-logo">SHEFAN THARANI</div>
     <div class="nav-links">
       <button class="nav-link" data-label="mission"  onclick="goTo('mission')">Mission</button>
       <button class="nav-link" data-label="skills"   onclick="goTo('skills')">Skills</button>
@@ -115,6 +135,15 @@
         </div>
       </div>
       <div class="mission-block">
+        <div class="mb-label">// focus areas</div>
+        <div class="mb-body" id="mission-focus">
+          <div class="mb-focus-item">Kubernetes security &amp; container hardening</div>
+          <div class="mb-focus-item">Network reconnaissance &amp; enumeration</div>
+          <div class="mb-focus-item">Linux systems engineering &amp; kernel dev</div>
+          <div class="mb-focus-item">Offensive security labs &amp; CTF ops</div>
+        </div>
+      </div>
+      <div class="mission-block">
         <div class="mb-label">// platforms</div>
         <div class="mb-body" id="mission-platforms">
           <span class="mb-tag cyan">Arch Linux</span>
@@ -122,15 +151,6 @@
           <span class="mb-tag cyan">Debian</span>
           <span class="mb-tag green">BlackArch</span>
           <span class="mb-tag green">Ubuntu Server</span>
-        </div>
-      </div>
-      <div class="mission-block">
-        <div class="mb-label">// focus areas</div>
-        <div class="mb-body" id="mission-focus">
-          <div class="mb-focus-item">Kubernetes security &amp; container hardening</div>
-          <div class="mb-focus-item">Network reconnaissance &amp; enumeration</div>
-          <div class="mb-focus-item">Linux systems engineering &amp; kernel dev</div>
-          <div class="mb-focus-item">Offensive security labs &amp; CTF ops</div>
         </div>
       </div>
       <div class="mission-block">
@@ -177,9 +197,18 @@
   <section id="arsenal" class="reveal">
     <div class="c-tl"></div><div class="c-tr"></div>
     <div class="c-bl"></div><div class="c-br"></div>
-    <div class="sec-label">project_manifest</div>
+    <div class="sec-label">project_manifest // git_intelligence</div>
     <div class="sec-title" data-label="ARSENAL">Arsenal</div>
-    <div id="proj-grid" class="pgrid"></div>
+
+    <!-- GitHub stats bar -->
+    <div class="ghstats">
+      <div class="ghst"><div class="ghstn" id="ghrepos">—</div><div class="ghstl">repos</div></div>
+      <div class="ghst"><div class="ghstn" id="ghfoll">—</div><div class="ghstl">followers</div></div>
+      <div class="ghst"><div class="ghstn" id="ghfing">—</div><div class="ghstl">following</div></div>
+    </div>
+
+    <!-- Combined project + GitHub repo cards -->
+    <div id="arsenal-grid" class="pgrid"></div>
   </section>
 
   <div class="divl"></div>
@@ -217,24 +246,6 @@
       <svg id="nmap" viewBox="0 0 800 540" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"></svg>
     </div>
     <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:.65em;letter-spacing:2px;color:var(--muted)"># click nodes for intel</div>
-  </section>
-
-  <div class="divl"></div>
-
-  <!-- ═══ GITHUB ═══════════════════════════ -->
-  <section id="ghsec" class="reveal">
-    <div class="c-tl"></div><div class="c-tr"></div>
-    <div class="c-bl"></div><div class="c-br"></div>
-    <div class="sec-label">git_intelligence</div>
-    <div class="sec-title" data-label="GITHUB INTEL">GitHub Intel</div>
-    <div class="ghstats">
-      <div class="ghst"><div class="ghstn" id="ghrepos">—</div><div class="ghstl">repos</div></div>
-      <div class="ghst"><div class="ghstn" id="ghfoll">—</div><div class="ghstl">followers</div></div>
-      <div class="ghst"><div class="ghstn" id="ghfing">—</div><div class="ghstl">following</div></div>
-    </div>
-    <div class="rgrid" id="rgrid">
-      <div style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.75em;padding:16px">fetching repositories...</div>
-    </div>
   </section>
 
   <div class="divl"></div>

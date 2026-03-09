@@ -104,17 +104,20 @@
   })();
 
   function bindCursorHover(){
-    const els = document.querySelectorAll(
-      'a, button, [data-label], .pc, .rcard, .ach, .soc-card, .hero-tag, .hero-role, input, textarea, select'
-    );
-    els.forEach(el => {
-      el.addEventListener('mouseenter', () => { hoverEl = el; locked = true;  });
-      el.addEventListener('mouseleave', () => { hoverEl = null; locked = false; });
+    // Use event delegation on document so dynamically injected cards
+    // (.pc repo cards from fetchGH) are always covered — no rebinding needed
+    const SELECTOR = 'a, button, [data-label], .pc, .rcard, .ach, .soc-card, .hero-tag, .hero-role, input, textarea, select';
+    document.addEventListener('mouseover', e => {
+      const el = e.target.closest(SELECTOR);
+      if(el){ hoverEl = el; locked = true; }
+    });
+    document.addEventListener('mouseout', e => {
+      const el = e.target.closest(SELECTOR);
+      if(el && !el.contains(e.relatedTarget)){ hoverEl = null; locked = false; }
     });
   }
 
-  // expose so initApp can call after DOM is rendered
-  window._bindCursorHover = bindCursorHover;
+  // delegation handles all elements including dynamically injected ones
   bindCursorHover();
 })();
 
@@ -419,11 +422,80 @@ function goTo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth
     boot.style.transition='opacity .85s ease'; boot.style.opacity='0';
     setTimeout(()=>{
       boot.style.display='none';
-      document.getElementById('app').classList.add('show');
-      initApp();
+      showWelcome();
     },870);
   },2700);
 })();
+
+// ── WELCOME SCREEN ──────────────────────
+function showWelcome(){
+  const wc = document.getElementById('welcome');
+  wc.classList.add('show');
+
+  // Words that cycle — feel portfolio-appropriate
+  const WORDS = ['PORTFOLIO','SYSTEMS','SECURITY','DEVOPS','LINUX','HACKER'];
+  let wi = 0;
+  const wordEl = document.getElementById('wc-word');
+
+  async function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+  async function typeWord(w){
+    wordEl.textContent = '';
+    for(const ch of w){
+      wordEl.textContent += ch;
+      await sleep(55);
+    }
+  }
+  async function eraseWord(){
+    while(wordEl.textContent.length > 0){
+      wordEl.textContent = wordEl.textContent.slice(0,-1);
+      await sleep(30);
+    }
+  }
+
+  let cycling = true;
+  (async function cycle(){
+    await typeWord(WORDS[0]);
+    while(cycling){
+      await sleep(1000);
+      await eraseWord();
+      wi = (wi + 1) % WORDS.length;
+      await typeWord(WORDS[wi]);
+    }
+  })();
+
+  // Progress bar — fills over 3.5s
+  const DURATION = 3500;
+  const wcBar = document.getElementById('wc-bar');
+  const start = performance.now();
+  (function tickBar(now){
+    const pct = Math.min((now - start) / DURATION * 100, 100);
+    wcBar.style.width = pct + '%';
+    if(pct < 100) requestAnimationFrame(tickBar);
+  })(start);
+
+  function dismiss(){
+    cycling = false;
+    wc.style.transition = 'opacity .55s ease';
+    wc.style.opacity = '0';
+    setTimeout(()=>{
+      wc.style.display = 'none';
+      document.getElementById('app').classList.add('show');
+      initApp();
+    }, 570);
+  }
+
+  const autoTimer = setTimeout(dismiss, DURATION);
+
+  function onSkip(){
+    clearTimeout(autoTimer);
+    document.removeEventListener('keydown', onSkip);
+    wc.removeEventListener('click', onSkip);
+    dismiss();
+  }
+  document.addEventListener('keydown', onSkip, { once: true });
+  wc.addEventListener('click', onSkip, { once: true });
+}
 
 // ── MATRIX BG ───────────────────────────
 function initBg(){
@@ -522,17 +594,23 @@ function renderContent(){
   }
 
   // Projects
-  const pg=document.getElementById('proj-grid');
+  const pg=document.getElementById('arsenal-grid');
   if(pg){
-    pg.innerHTML=D.projects.map(p=>`
-      <div class="pc">
+    // Known language identifiers to pick from tags for the cyan language badge
+    const LANGS=new Set(['python','javascript','js','typescript','ts','rust','go','c','cpp','c++','java','ruby','php','swift','kotlin','bash','shell','html','css','react','vue','svelte','lua','zig']);
+    pg.innerHTML=D.projects.map(p=>{
+      const lang=p.tags.find(t=>LANGS.has(t.toLowerCase()))||p.tags[0]||'';
+      return `
+      <a href="${p.url}" target="_blank" class="pc" style="text-decoration:none;display:block">
         <div class="pc-corner"></div>
-        <div class="pc-badge badge-${p.badge}">${p.badge}</div>
         <div class="pc-name">${p.name}</div>
         <div class="pc-desc">${p.desc}</div>
-        <div class="pc-tags">${p.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}</div>
-        <a href="${p.url}" target="_blank" class="plink">→ repository</a>
-      </div>`).join('');
+        <div class="pc-footer">
+          <div class="pc-tags">${p.tags.map(t=>`<span class="pc-tag">${t}</span>`).join('')}</div>
+          ${lang?`<span class="pc-lang">${lang}</span>`:''}
+        </div>
+      </a>`;
+    }).join('');
   }
 
   // Socials
@@ -579,7 +657,6 @@ function renderContent(){
     ag.innerHTML=D.achievements.map((a,i)=>{
       const d=(i*.25)+'s';
       return `<div class="ach${a.type==='red'?' red-ach':''}" style="--d:${d}">
-        <div class="ai">${a.icon}</div>
         <div><div class="at">${a.label}</div><div class="ad">${a.desc}</div></div>
       </div>`;
     }).join('');
@@ -1126,25 +1203,32 @@ async function fetchGH(){
     }
     if(rr.ok){
       const repos=await rr.json();
-      if(!repos.length){document.getElementById('rgrid').innerHTML='<div style="color:var(--muted);padding:16px;font-size:.75em">no public repos found.</div>';return;}
-      document.getElementById('rgrid').innerHTML=repos.map(r=>`
-        <a href="${r.html_url}" target="_blank" class="rcard">
-          <div class="rname">${r.name}</div>
-          <div class="rdesc">${r.description||'no description.'}</div>
-          <div class="rmeta">
-            <span>★ ${r.stargazers_count}</span>
-            <span>⑂ ${r.forks_count}</span>
-            ${r.language?`<span class="rlang">${r.language.toLowerCase()}</span>`:''}
+      const grid=document.getElementById('arsenal-grid');
+      if(!repos.length){grid.insertAdjacentHTML('beforeend','<div style="color:var(--muted);padding:16px;font-size:.75em">no public repos found.</div>');return;}
+      grid.insertAdjacentHTML('beforeend',repos.map(r=>`
+        <a href="${r.html_url}" target="_blank" class="pc" style="text-decoration:none;display:block">
+          <div class="pc-corner"></div>
+          <div class="pc-name">${r.name}</div>
+          <div class="pc-desc">${r.description||'no description.'}</div>
+          <div class="pc-footer">
+            <div class="pc-tags">
+              <span class="pc-tag">★ ${r.stargazers_count}</span>
+              <span class="pc-tag">⑂ ${r.forks_count}</span>
+              ${r.updated_at?`<span class="pc-tag">${new Date(r.updated_at).toLocaleDateString('en-GB',{month:'short',year:'numeric'})}</span>`:''}
+            </div>
+            ${r.language?`<span class="pc-lang">${r.language}</span>`:''}
           </div>
-        </a>`).join('');
+        </a>`).join(''));
     } else throw new Error();
   } catch{
-    document.getElementById('rgrid').innerHTML = `
+    const grid=document.getElementById('arsenal-grid');
+    grid.insertAdjacentHTML('beforeend',`
       <div style="color:var(--muted);font-size:.75em;padding:16px;line-height:1.8">
         [!] <span style="color:var(--r)">github api unavailable</span><br>
         <a href="https://github.com/${GRIM_DATA.identity.github}" target="_blank" style="color:var(--c);text-decoration:none">→ github.com/${GRIM_DATA.identity.github}</a>
-      </div>`;
+      </div>`);
   }
+  // cursor delegation handles new cards automatically — no rebind needed
 }
 
 // ── INIT ─────────────────────────────────
@@ -1156,5 +1240,4 @@ function initApp(){
   initNetMap();
   initReveal();
   fetchGH();
-  window._bindCursorHover?.(); // re-bind after dynamic content is rendered
 }
