@@ -514,13 +514,30 @@ function renderContent(){
   // Socials
   const sg2=document.getElementById('social-grid');
   if(sg2){
+    const _GH=`<svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.2-.3-.6-1.6.1-3.2 0 0 1.1-.3 3.5 1.3a12 12 0 0 1 6.4 0c2.4-1.6 3.5-1.3 3.5-1.3.7 1.6.3 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>`;
+    const _LI=`<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55V14.9c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.91v5.64H9.4V9h3.41v1.56h.05c.48-.9 1.64-1.84 3.37-1.84 3.6 0 4.27 2.37 4.27 5.45v6.28zM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.13zM6.9 20.45H3.56V9H6.9v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>`;
+    const _TW=`<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+    const _DC=`<svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.042.032.055a20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.201 13.201 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.981.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>`;
+    const _EM=`<svg viewBox="0 0 24 24"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>`;
+    const _BL=`<svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>`;
+    const _IG=`<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
+    const _YT=`<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+    const _TG=`<svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`;
+    const _RD=`<svg viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>`;
+    const _TW2=`<svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>`;
+    // support both short codes (legacy) and full platform names (admin export)
     const ICONS={
-      gh:`<svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.2-.3-.6-1.6.1-3.2 0 0 1.1-.3 3.5 1.3a12 12 0 0 1 6.4 0c2.4-1.6 3.5-1.3 3.5-1.3.7 1.6.3 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>`,
-      li:`<svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55V14.9c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.91v5.64H9.4V9h3.41v1.56h.05c.48-.9 1.64-1.84 3.37-1.84 3.6 0 4.27 2.37 4.27 5.45v6.28zM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.13zM6.9 20.45H3.56V9H6.9v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>`,
-      tw:`<svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
-      dc:`<svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.042.032.055a20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.201 13.201 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-2.981.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>`,
-      em:`<svg viewBox="0 0 24 24"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>`,
-      bl:`<svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>`,
+      gh:_GH, github:_GH,
+      li:_LI, linkedin:_LI,
+      tw:_TW, twitter:_TW, x:_TW,
+      dc:_DC, discord:_DC,
+      em:_EM, email:_EM, mail:_EM,
+      bl:_BL, medium:_BL,
+      ig:_IG, instagram:_IG,
+      yt:_YT, youtube:_YT,
+      tg:_TG, telegram:_TG,
+      rd:_RD, reddit:_RD,
+      tc:_TW2, twitch:_TW2,
     };
     sg2.innerHTML=D.socials.map(s=>`
       <a href="${s.url}" target="_blank" class="soc-card">
@@ -533,7 +550,7 @@ function renderContent(){
   }
 
   // Achievements
-  const ag=document.getElementById('ach-grid');
+  const ag=document.getElementById('ach-grid'); 
   if(ag){
     ag.innerHTML=D.achievements.map((a,i)=>{
       const d=(i*.25)+'s';
@@ -798,92 +815,257 @@ function initTerminal(){
 
 // ── NETWORK MAP ──────────────────────────
 function initNetMap(){
-  const c=document.getElementById('nmap');
-  if(!c)return;
-  const x=c.getContext('2d');
-  c.width=c.offsetWidth; c.height=c.offsetHeight||320;
-  const W=c.width,H=c.height;
+  const svg=document.getElementById('nmap');
+  if(!svg)return;
+  const NS='http://www.w3.org/2000/svg';
+  const VW=800,VH=540;
   const NW=GRIM_DATA.network||{nodes:[]};
-  // Positions are layout-computed, not in data
-  const POS=[
-    {id:'inet',  x:W*.5, y:H*.08,r:Math.max(14,W*.034)},
-    {id:'fw',    x:W*.5, y:H*.28,r:Math.max(12,W*.030)},
-    {id:'router',x:W*.5, y:H*.50,r:Math.max(12,W*.027)},
-    {id:'dev',   x:W*.2, y:H*.76,r:Math.max(10,W*.023)},
-    {id:'sec',   x:W*.5, y:H*.76,r:Math.max(10,W*.023)},
-    {id:'ops',   x:W*.8, y:H*.76,r:Math.max(10,W*.023)},
-    {id:'db',    x:W*.08,y:H*.95,r:Math.max(8,W*.015)},
-    {id:'kali',  x:W*.38,y:H*.95,r:Math.max(8,W*.015)},
-    {id:'k8s',   x:W*.65,y:H*.95,r:Math.max(8,W*.015)},
-    {id:'mon',   x:W*.9, y:H*.95,r:Math.max(8,W*.015)},
-  ];
-  const nodes=NW.nodes.map(nd=>{
-    const pos=POS.find(p=>p.id===nd.id)||{x:W*.5,y:H*.5,r:10};
-    return{...nd,...pos};
-  });
-  const edges=[['inet','fw'],['fw','router'],['router','dev'],['router','sec'],['router','ops'],['dev','db'],['sec','kali'],['ops','k8s'],['ops','mon']];
-  const pkts=edges.map(([a,b])=>({a,b,t:Math.random(),spd:.003+Math.random()*.004}));
-  const nn=id=>nodes.find(n=>n.id===id);
-  let hov=null,ao=0;
-  const ni=document.getElementById('ninfo');
-  function draw(){
-    x.clearRect(0,0,W,H); ao+=.018;
-    edges.forEach(([a,b])=>{
-      const na=nn(a),nb=nn(b);
-      x.strokeStyle='rgba(34,34,34,.9)'; x.lineWidth=1;
-      x.setLineDash([3,8]); x.lineDashOffset=-ao*12;
-      x.beginPath(); x.moveTo(na.x,na.y); x.lineTo(nb.x,nb.y); x.stroke();
-    });
-    x.setLineDash([]);
-    pkts.forEach(p=>{
-      p.t+=p.spd; if(p.t>1)p.t=0;
-      const na=nn(p.a),nb=nn(p.b);
-      const px=na.x+(nb.x-na.x)*p.t,py=na.y+(nb.y-na.y)*p.t;
-      const isR=nb.id==='fw'||nb.id==='sec'||nb.id==='kali';
-      x.fillStyle=isR?'rgba(255,59,59,.85)':'rgba(0,212,255,.75)';
-      x.shadowBlur=6; x.shadowColor=isR?'rgba(255,59,59,.6)':'rgba(0,212,255,.6)';
-      x.beginPath(); x.arc(px,py,2,0,Math.PI*2); x.fill();
-    });
-    x.shadowBlur=0;
-    nodes.forEach(n=>{
-      const isH=hov===n.id;
-      x.shadowBlur=isH?16:6; x.shadowColor=n.col;
-      x.strokeStyle=n.col; x.lineWidth=1;
-      x.beginPath(); x.arc(n.x,n.y,n.r+(isH?3:0),0,Math.PI*2); x.stroke();
-      x.fillStyle='rgba(0,0,0,.9)';
-      x.beginPath(); x.arc(n.x,n.y,n.r,0,Math.PI*2); x.fill();
-      const g=x.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);
-      g.addColorStop(0,n.col+'22'); g.addColorStop(1,'transparent');
-      x.fillStyle=g; x.shadowBlur=0;
-      x.beginPath(); x.arc(n.x,n.y,n.r,0,Math.PI*2); x.fill();
-      x.fillStyle=n.col;
-      x.font=`${Math.max(7,n.r*.52)}px 'JetBrains Mono',monospace`;
-      x.textAlign='center'; x.textBaseline='middle';
-      x.fillText(n.label,n.x,n.y);
-    });
-    requestAnimationFrame(draw);
+
+  function svgEl(tag,attrs,parent){
+    const e=document.createElementNS(NS,tag);
+    Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));
+    if(parent)parent.appendChild(e);
+    return e;
   }
-  draw();
-  c.addEventListener('mousemove',e=>{
-    const rc=c.getBoundingClientRect(),mx=e.clientX-rc.left,my=e.clientY-rc.top;
-    let f=null;
-    nodes.forEach(n=>{const dx=mx-n.x,dy=my-n.y;if(Math.sqrt(dx*dx+dy*dy)<n.r+8)f=n;});
-    hov=f?f.id:null;
+
+  // ─ Layout ──────────────────────────────────
+  const LAYOUT={
+    inet:  {x:400,y:44, r:30},
+    fw:    {x:400,y:128,r:26},
+    router:{x:400,y:228,r:24},
+    dev:   {x:155,y:348,r:22},
+    sec:   {x:400,y:348,r:22},
+    devops:{x:645,y:348,r:22},
+    db:    {x:72, y:476,r:17},
+    kali:  {x:318,y:476,r:17},
+    k8s:   {x:572,y:476,r:17},
+    mon:   {x:726,y:476,r:17},
+  };
+
+  const EDGES=[
+    ['inet','fw'],['fw','router'],
+    ['router','dev'],['router','sec'],['router','devops'],
+    ['dev','db'],['sec','kali'],
+    ['devops','k8s'],['devops','mon'],['k8s','mon'],
+  ];
+
+  const nodes=NW.nodes
+    .filter(nd=>LAYOUT[nd.id])
+    .map(nd=>({...nd,...LAYOUT[nd.id]}));
+  const nn=id=>nodes.find(n=>n.id===id);
+
+  // ─ Helpers ─────────────────────────────────
+  function hexToRgb(h){
+    if(!h||h.length<7)return'128,128,128';
+    return`${parseInt(h.slice(1,3),16)},${parseInt(h.slice(3,5),16)},${parseInt(h.slice(5,7),16)}`;
+  }
+  function arc(cx,cy,r,startDeg,endDeg){
+    const s=startDeg*Math.PI/180,e=endDeg*Math.PI/180;
+    const large=endDeg-startDeg>180?1:0;
+    return`M${(cx+r*Math.cos(s)).toFixed(2)},${(cy+r*Math.sin(s)).toFixed(2)} A${r},${r},0,${large},1,${(cx+r*Math.cos(e)).toFixed(2)},${(cy+r*Math.sin(e)).toFixed(2)}`;
+  }
+
+  // ─ Defs ────────────────────────────────────
+  while(svg.firstChild)svg.removeChild(svg.firstChild);
+  const defs=svgEl('defs',{},svg);
+
+  const fGlow=svgEl('filter',{id:'nm-glow',x:'-60%',y:'-60%',width:'220%',height:'220%'},defs);
+  svgEl('feGaussianBlur',{in:'SourceGraphic',stdDeviation:'3.5',result:'blur'},fGlow);
+  const fm=svgEl('feMerge',{},fGlow);
+  svgEl('feMergeNode',{in:'blur'},fm);svgEl('feMergeNode',{in:'SourceGraphic'},fm);
+
+  const fGlowSm=svgEl('filter',{id:'nm-glow-sm',x:'-40%',y:'-40%',width:'180%',height:'180%'},defs);
+  svgEl('feGaussianBlur',{in:'SourceGraphic',stdDeviation:'2',result:'blur'},fGlowSm);
+  const fm2=svgEl('feMerge',{},fGlowSm);
+  svgEl('feMergeNode',{in:'blur'},fm2);svgEl('feMergeNode',{in:'SourceGraphic'},fm2);
+
+  const fStrong=svgEl('filter',{id:'nm-glow-strong',x:'-80%',y:'-80%',width:'260%',height:'260%'},defs);
+  svgEl('feGaussianBlur',{in:'SourceGraphic',stdDeviation:'7',result:'blur'},fStrong);
+  const fm3=svgEl('feMerge',{},fStrong);
+  svgEl('feMergeNode',{in:'blur'},fm3);svgEl('feMergeNode',{in:'SourceGraphic'},fm3);
+
+  nodes.forEach(n=>{
+    const g=svgEl('radialGradient',{id:`nmg-${n.id}`,cx:'50%',cy:'50%',r:'50%'},defs);
+    svgEl('stop',{offset:'0%','stop-color':n.col,'stop-opacity':'0.35'},g);
+    svgEl('stop',{offset:'55%','stop-color':n.col,'stop-opacity':'0.12'},g);
+    svgEl('stop',{offset:'100%','stop-color':n.col,'stop-opacity':'0'},g);
   });
-  c.addEventListener('click',e=>{
-    const rc=c.getBoundingClientRect(),mx=e.clientX-rc.left,my=e.clientY-rc.top;
-    nodes.forEach(n=>{
-      const dx=mx-n.x,dy=my-n.y;
-      if(Math.sqrt(dx*dx+dy*dy)<n.r+8){
-        ni.style.display='block';
-        ni.style.left=Math.min(e.clientX+n.r+10,window.innerWidth-210)+'px';
-        ni.style.top=(e.clientY-18)+'px';
-        ni.innerHTML=`<strong>${n.label}</strong>${n.info}`;
-        setTimeout(()=>ni.style.display='none',3000);
-      }
+
+  EDGES.forEach(([a,b])=>{
+    const na=nn(a),nb=nn(b);
+    if(!na||!nb)return;
+    const isRed=nb.id==='fw'||nb.id==='sec'||nb.id==='kali';
+    const col=isRed?'#ff3b3b':'#00d4ff';
+    const lg=svgEl('linearGradient',{
+      id:`nml-${a}-${b}`,x1:`${na.x}`,y1:`${na.y}`,x2:`${nb.x}`,y2:`${nb.y}`,
+      gradientUnits:'userSpaceOnUse'
+    },defs);
+    svgEl('stop',{offset:'0%','stop-color':col,'stop-opacity':'0.04'},lg);
+    svgEl('stop',{offset:'50%','stop-color':col,'stop-opacity':'0.55'},lg);
+    svgEl('stop',{offset:'100%','stop-color':col,'stop-opacity':'0.04'},lg);
+  });
+
+  // ─ Background grid ──────────────────────────
+  const gridG=svgEl('g',{'class':'nm-grid'},svg);
+  for(let gx=0;gx<=VW;gx+=44)
+    svgEl('line',{x1:gx,y1:0,x2:gx,y2:VH,stroke:'rgba(0,255,136,0.022)','stroke-width':'0.5'},gridG);
+  for(let gy=0;gy<=VH;gy+=44)
+    svgEl('line',{x1:0,y1:gy,x2:VW,y2:gy,stroke:'rgba(0,255,136,0.022)','stroke-width':'0.5'},gridG);
+  for(let gx=88;gx<VW;gx+=176)
+    for(let gy=88;gy<VH;gy+=176)
+      svgEl('circle',{cx:gx,cy:gy,r:'1.2',fill:'rgba(0,255,136,0.07)'},gridG);
+
+  // ─ Edges ───────────────────────────────────
+  const edgeG=svgEl('g',{'class':'nm-edges'},svg);
+  const edgeEls={};
+  EDGES.forEach(([a,b])=>{
+    const na=nn(a),nb=nn(b);
+    if(!na||!nb)return;
+    const isRed=nb.id==='fw'||nb.id==='sec'||nb.id==='kali';
+    const col=isRed?'#ff3b3b':'#00d4ff';
+    const rgb=hexToRgb(col);
+    const key=`${a}-${b}`;
+    const eg=svgEl('g',{'class':'nm-edge-glow','data-a':a,'data-b':b},edgeG);
+    // Thick soft base track
+    const el1=svgEl('line',{x1:na.x,y1:na.y,x2:nb.x,y2:nb.y,
+      stroke:`rgba(${rgb},.06)`,'stroke-width':'5','stroke-linecap':'round'},eg);
+    // Main glowing line
+    const el2=svgEl('line',{x1:na.x,y1:na.y,x2:nb.x,y2:nb.y,
+      stroke:`url(#nml-${a}-${b})`,'stroke-width':'1.1',
+      'stroke-linecap':'round',filter:'url(#nm-glow-sm)'},eg);
+    // Tick marks along edge (connector stubs)
+    const dx=nb.x-na.x,dy=nb.y-na.y,len=Math.hypot(dx,dy);
+    const ux=dx/len,uy=dy/len,px2=-uy,py2=ux;
+    for(let s=1;s<=3;s++){
+      const t=s/4;
+      const tx=na.x+dx*t,ty=na.y+dy*t;
+      svgEl('line',{x1:tx-px2*4,y1:ty-py2*4,x2:tx+px2*4,y2:ty+py2*4,
+        stroke:`rgba(${rgb},.22)`,'stroke-width':'0.6'},eg);
+    }
+    edgeEls[key]={el1,el2,col,rgb,eg};
+  });
+
+  // ─ Nodes ───────────────────────────────────
+  const nodeG=svgEl('g',{'class':'nm-nodes'},svg);
+  const nodeEls={};
+  const ni=document.getElementById('ninfo');
+
+  nodes.forEach(n=>{
+    const{x,y,r,col}=n;
+    const rgb=hexToRgb(col);
+    const g=svgEl('g',{'class':'nm-node','data-id':n.id},nodeG);
+
+    // Outer pulse halo
+    svgEl('circle',{'class':'nm-halo',cx:x,cy:y,r:r+22,
+      fill:`url(#nmg-${n.id})`,opacity:'0.8'},g);
+    // Dual orbit rings
+    svgEl('circle',{'class':'nm-orbit',cx:x,cy:y,r:r+11,
+      fill:'none',stroke:`rgba(${rgb},.18)`,'stroke-width':'0.7','stroke-dasharray':'5 7'},g);
+    svgEl('circle',{'class':'nm-orbit2',cx:x,cy:y,r:r+5.5,
+      fill:'none',stroke:`rgba(${rgb},.11)`,'stroke-width':'0.5','stroke-dasharray':'2 10'},g);
+    // Glowing border ring
+    svgEl('circle',{'class':'nm-ring',cx:x,cy:y,r:r,
+      fill:'none',stroke:col,'stroke-width':'1.4',filter:'url(#nm-glow)'},g);
+    // Dark core fill
+    svgEl('circle',{cx:x,cy:y,r:r-.7,fill:'rgba(4,6,10,.95)'},g);
+    // Inner radial gradient
+    svgEl('circle',{cx:x,cy:y,r:r-.7,fill:`url(#nmg-${n.id})`},g);
+    // Crosshair lines
+    svgEl('line',{x1:x-r*.5,y1:y,x2:x+r*.5,y2:y,
+      stroke:`rgba(${rgb},.13)`,'stroke-width':'0.6'},g);
+    svgEl('line',{x1:x,y1:y-r*.5,x2:x,y2:y+r*.5,
+      stroke:`rgba(${rgb},.13)`,'stroke-width':'0.6'},g);
+    // Rotating scan arc
+    const scanG=svgEl('g',{'class':'nm-scan'},g);
+    svgEl('path',{d:arc(x,y,r*.66,-50,160),fill:'none',stroke:col,
+      'stroke-width':'0.9','stroke-linecap':'round',opacity:'0.5',
+      'stroke-dasharray':`${r*.6} ${r*.2} ${r*.15} ${r*.8}`},scanG);
+    // Center dot (pulsing)
+    svgEl('circle',{'class':'nm-dot',cx:x,cy:y,r:'2.8',fill:col,
+      filter:'url(#nm-glow-sm)'},g);
+    // Online status pip (blinking)
+    svgEl('circle',{'class':'nm-pip',cx:x+r*.78,cy:y-r*.78,r:'2.1',
+      fill:'#00ff88',filter:'url(#nm-glow-sm)'},g);
+    // Node label
+    const lbl=svgEl('text',{'class':'nm-label',x:x,y:y+r+12,
+      'text-anchor':'middle','dominant-baseline':'hanging',
+      'font-family':"'JetBrains Mono',monospace",'font-size':Math.max(8,Math.min(10,r*.42)),
+      fill:col,'letter-spacing':'1.5',opacity:'0.85',filter:'url(#nm-glow-sm)'},g);
+    lbl.textContent=n.label;
+
+    nodeEls[n.id]=g;
+
+    g.addEventListener('mouseenter',()=>{
+      g.querySelector('.nm-ring').setAttribute('filter','url(#nm-glow-strong)');
+      g.querySelector('.nm-ring').setAttribute('stroke-width','2.4');
+      g.querySelector('.nm-halo').setAttribute('opacity','1');
+      g.querySelector('.nm-label').setAttribute('opacity','1');
+      Object.values(edgeEls).forEach(e=>{
+        const connected=e.eg.dataset.a===n.id||e.eg.dataset.b===n.id;
+        e.el2.setAttribute('stroke-width',connected?'2.2':'1.1');
+        e.el1.setAttribute('stroke',connected?`rgba(${e.rgb},.18)`:`rgba(${e.rgb},.06)`);
+      });
+    });
+    g.addEventListener('mouseleave',()=>{
+      g.querySelector('.nm-ring').setAttribute('filter','url(#nm-glow)');
+      g.querySelector('.nm-ring').setAttribute('stroke-width','1.4');
+      g.querySelector('.nm-halo').setAttribute('opacity','0.8');
+      g.querySelector('.nm-label').setAttribute('opacity','0.85');
+      Object.values(edgeEls).forEach(e=>{
+        e.el2.setAttribute('stroke-width','1.1');
+        e.el1.setAttribute('stroke',`rgba(${e.rgb},.06)`);
+      });
+    });
+    g.addEventListener('click',ev=>{
+      ev.stopPropagation();
+      const bnd=svg.getBoundingClientRect();
+      const scaleX=bnd.width/VW,scaleY=bnd.height/VH;
+      const screenX=bnd.left+x*scaleX,screenY=bnd.top+y*scaleY;
+      const px=Math.min(screenX+r*scaleX+18,window.innerWidth-300);
+      const py=Math.max(screenY-70,8);
+      ni.style.left=px+'px';ni.style.top=py+'px';ni.style.display='block';
+      ni.innerHTML=`<div class="ninfo-hdr"><span>◉ NODE::${n.id.toUpperCase()}</span><span class="ninfo-x" onclick="document.getElementById('ninfo').style.display='none'">✕</span></div><div class="ninfo-body"><span class="ninfo-lbl">LABEL </span> ${n.label}<br><span class="ninfo-lbl">STATUS</span> <span style="color:#00ff88">ONLINE</span><br><br><span class="ninfo-lbl">INFO  </span><br>${n.info||'—'}</div>`;
+      clearTimeout(ni._t);ni._t=setTimeout(()=>ni.style.display='none',7000);
     });
   });
-  window.addEventListener('resize',()=>{c.width=c.offsetWidth;c.height=c.offsetHeight||320;});
+
+  // ─ Animated packets (RAF) ──────────────────
+  const pktG=svgEl('g',{'class':'nm-pkts'},svg);
+  const pkts=[];
+  EDGES.forEach(([a,b])=>{
+    const na=nn(a),nb=nn(b);
+    if(!na||!nb)return;
+    const isRed=nb.id==='fw'||nb.id==='sec'||nb.id==='kali';
+    const col=isRed?'#ff3b3b':'#00d4ff';
+    for(let i=0;i<2;i++){
+      const trail=Array.from({length:3},()=>
+        svgEl('circle',{r:'1.3',fill:col,opacity:'0','class':'nm-pkt'},pktG));
+      pkts.push({
+        a:na,b:nb,t:i*.5+Math.random()*.2,
+        spd:.0005+Math.random()*.0009,col,
+        el:svgEl('circle',{r:'2.4',fill:col,opacity:'0.9','class':'nm-pkt',
+          filter:'url(#nm-glow-sm)'},pktG),
+        trail,
+      });
+    }
+  });
+
+  (function raf(){
+    pkts.forEach(p=>{
+      p.t+=p.spd;if(p.t>=1)p.t=0;
+      const{a,b,el,trail}=p;
+      const px=a.x+(b.x-a.x)*p.t,py=a.y+(b.y-a.y)*p.t;
+      el.setAttribute('cx',px.toFixed(1));el.setAttribute('cy',py.toFixed(1));
+      trail.forEach((tr,i)=>{
+        const tt=Math.max(0,p.t-(i+1)*.02);
+        tr.setAttribute('cx',(a.x+(b.x-a.x)*tt).toFixed(1));
+        tr.setAttribute('cy',(a.y+(b.y-a.y)*tt).toFixed(1));
+        tr.setAttribute('opacity',(.5-(i*.15)).toFixed(2));
+        tr.setAttribute('r',(1.4-i*.28).toFixed(1));
+      });
+    });
+    requestAnimationFrame(raf);
+  })();
 }
 
 // ── SCROLL REVEAL + SKILL BARS ───────────

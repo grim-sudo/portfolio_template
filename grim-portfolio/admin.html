@@ -475,7 +475,7 @@ function renderSocials(){
         <div class="field">
           <label class="field-label">Platform ID</label>
           <select onchange="state.socials[${i}].platform=this.value;state.socials[${i}].icon=this.value">
-            ${['github','linkedin','twitter','discord','email','medium'].map(p=>`<option value="${p}" ${s.platform===p?'selected':''}>${p}</option>`).join('')}
+            ${['github','linkedin','twitter','discord','email','medium','instagram','youtube','telegram','reddit','twitch'].map(p=>`<option value="${p}" ${s.platform===p?'selected':''}>${p}</option>`).join('')}
           </select>
         </div>
         <div class="field">
@@ -490,11 +490,11 @@ function renderSocials(){
     </div>`).join('');
 }
 function addSocial(){
-  state.socials.push({platform:'github',label:'GitHub',url:'https://github.com/',icon:'gh'});
+  state.socials.push({platform:'github',label:'GitHub',url:'https://github.com/',icon:'github'});
   renderSocials();
 }
 function removeSocial(i){ state.socials.splice(i,1); renderSocials(); }
-function saveSocials(){ state.socials.forEach(s=>s.icon=s.platform.slice(0,2).toLowerCase()); toast('✔ socials saved'); }
+function saveSocials(){ state.socials.forEach(s=>s.icon=s.platform); toast('✔ socials saved'); }
 
 // ─── SKILLS ───
 function renderSkills(){
