@@ -476,11 +476,35 @@ function renderContent(){
   if(M){
     const mo=document.getElementById('mission-overview'); if(mo) mo.textContent=M.overview||'';
     const mp=document.getElementById('mission-platforms');
-    if(mp) mp.innerHTML=(M.platforms||[]).map((p,i)=>`<span class="mb-tag ${i<3?'cyan':'green'}">${p}</span>`).join('');
+    if(mp){
+      const platforms=M.platforms||[];
+      const start={ r:0, g:212, b:255 };
+      const end={ r:0, g:255, b:136 };
+      const lastIndex=Math.max(platforms.length-1,1);
+      mp.innerHTML=platforms.map((p,i)=>{
+        const ratio=i/lastIndex;
+        const r=Math.round(start.r + (end.r-start.r)*ratio);
+        const g=Math.round(start.g + (end.g-start.g)*ratio);
+        const b=Math.round(start.b + (end.b-start.b)*ratio);
+        return `<span class="mb-tag" style="color:rgb(${r},${g},${b});border-color:rgba(${r},${g},${b},.35)">${p}</span>`;
+      }).join('');
+    }
     const mf=document.getElementById('mission-focus');
     if(mf) mf.innerHTML=(M.focusAreas||[]).map(f=>`<div class="mb-focus-item">${f}</div>`).join('');
     const mt=document.getElementById('mission-toolset');
-    if(mt) mt.innerHTML=(M.toolset||[]).map((t,i)=>`<span class="mb-tag ${i<3?'green':''}">${t}</span>`).join('');
+    if(mt){
+      const toolset=M.toolset||[];
+      const start={ r:0, g:255, b:136 };
+      const end={ r:136, g:136, b:136 };
+      const lastIndex=Math.max(toolset.length-1,1);
+      mt.innerHTML=toolset.map((t,i)=>{
+        const ratio=i/lastIndex;
+        const r=Math.round(start.r + (end.r-start.r)*ratio);
+        const g=Math.round(start.g + (end.g-start.g)*ratio);
+        const b=Math.round(start.b + (end.b-start.b)*ratio);
+        return `<span class="mb-tag" style="color:rgb(${r},${g},${b});border-color:rgba(${r},${g},${b},.35)">${t}</span>`;
+      }).join('');
+    }
   }
 
   // Skills bars
