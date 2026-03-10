@@ -259,12 +259,16 @@ nav {
 .hero-name::before {
   color: #ff003c;
   text-shadow: 3px 0 #ff003c, -1px 0 rgba(255,0,60,.4);
+  opacity: 0;
   animation: glBefore 3.5s 1s infinite steps(1);
+  animation-fill-mode: backwards;
 }
 .hero-name::after {
   color: #00e5ff;
   text-shadow: -3px 0 #00e5ff, 1px 0 rgba(0,229,255,.4);
+  opacity: 0;
   animation: glAfter 3.5s 1.3s infinite steps(1);
+  animation-fill-mode: backwards;
 }
 .hero-name {
   animation: glFlicker 4s 2s infinite steps(1);
@@ -692,7 +696,7 @@ section {
 #nmap { width: 100%; max-width: 660px; height: auto; display: block; cursor: crosshair; margin: 0 auto; }
 @keyframes nmap-spin  { to { transform: rotate(360deg); } }
 @keyframes nmap-spin-r{ to { transform: rotate(-360deg); } }
-@keyframes nmap-pulse { 0%,100%{ opacity:.18; transform:scale(1); } 50%{ opacity:.38; transform:scale(1.12); } }
+@keyframes nmap-pulse { 0%,100%{ opacity:.38; transform:scale(1); } 50%{ opacity:.65; transform:scale(1.12); } }
 @keyframes nmap-dot   { 0%,100%{ opacity:.7; r:2.5px; } 50%{ opacity:1; r:3.8px; } }
 @keyframes nmap-pip   { 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
 .nm-halo { animation: nmap-pulse 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
@@ -1100,7 +1104,8 @@ footer {
   font-family: var(--font-code);
   font-size: clamp(8px,.9vw,10px);
   letter-spacing: 3px; text-transform: uppercase;
-  color: #1e1e1e;
+  color: var(--g);
+  text-shadow: 0 0 8px rgba(0,255,136,.6), 0 0 20px rgba(0,255,136,.25);
   opacity: 0; animation: wcUp .5s ease .4s forwards;
 }
 
