@@ -31,16 +31,7 @@ export default function Arsenal({ data }) {
     <section id="arsenal">
       <div className="c-tl" /><div className="c-tr" /><div className="c-bl" /><div className="c-br" />
       <p className="sec-label">// PROJECTS</p>
-      <h2 className="sec-title reveal">ARSENAL</h2>
-
-      {/* GitHub Stats */}
-      {stats && (
-        <div className="ghstats reveal">
-          <div className="ghst"><div id="ghrepos" className="ghstn">{stats.repos}</div><div className="ghstl">Repositories</div></div>
-          <div className="ghst"><div id="ghfoll"  className="ghstn">{stats.followers}</div><div className="ghstl">Followers</div></div>
-          <div className="ghst"><div id="ghfing"  className="ghstn">{stats.following}</div><div className="ghstl">Following</div></div>
-        </div>
-      )}
+      <h2 className="sec-title reveal" style={{ marginBottom: '24px' }}>ARSENAL</h2>
 
       {/* Static projects from data */}
       <div id="arsenal-grid" className="pgrid reveal">

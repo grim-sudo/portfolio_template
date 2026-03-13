@@ -4,8 +4,8 @@
 
 export const GRIM_DATA = {
   "identity": {
-    "handle": "GRIM",
-    "realname": "Shefan Tharani",
+    "handle": "Shefan Tharani",
+    "realname": "GRIM",
     "role": "Systems Engineer // Security Researcher",
     "tagline": "Building infrastructure. Exploiting systems. Securing what matters.",
     "github": "grim-sudo",
