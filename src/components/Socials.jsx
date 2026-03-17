@@ -19,8 +19,8 @@ export default function Socials({ data }) {
   return (
     <section id="contact">
       <div className="c-tl" /><div className="c-tr" /><div className="c-bl" /><div className="c-br" />
-      <p className="sec-label">// CONNECT</p>
-      <h2 className="sec-title reveal">SOCIALS</h2>
+      <p className="sec-label">// Connect</p>
+      <h2 className="sec-title reveal">Reach Out</h2>
       <div id="social-grid" className="reveal">
         {data.socials.map((s, i) => (
           <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="soc-card">

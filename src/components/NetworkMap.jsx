@@ -17,8 +17,8 @@ export default function NetworkMap({ data }) {
   return (
     <section id="network">
       <div className="c-tl" /><div className="c-tr" /><div className="c-bl" /><div className="c-br" />
-      <p className="sec-label">// TOPOLOGY</p>
-      <h2 className="sec-title reveal">NETWORK MAP</h2>
+      <p className="sec-label">// Topology</p>
+      <h2 className="sec-title reveal">Inside My Lab</h2>
 
       <svg
         id="nmap"

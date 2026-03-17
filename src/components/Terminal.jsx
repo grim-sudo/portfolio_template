@@ -14,8 +14,8 @@ export default function Terminal({ data }) {
   return (
     <section id="terminal" ref={sectionRef}>
       <div className="c-tl" /><div className="c-tr" /><div className="c-bl" /><div className="c-br" />
-      <p className="sec-label">// INTERFACE</p>
-      <h2 className="sec-title reveal">TERMINAL</h2>
+      <p className="sec-label">// Interface</p>
+      <h2 className="sec-title reveal">Try My Shell</h2>
       <div id="tsec" className="term-box reveal">
         <div className="term-bar">
           <div className="tbar-dot td-r" />

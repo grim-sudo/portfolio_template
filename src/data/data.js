@@ -4,10 +4,17 @@
 
 export const GRIM_DATA = {
   "identity": {
-    "handle": "Shefan Tharani",
-    "realname": "GRIM",
+    "handle": "Grim",
+    "realname": "Shefan Tharani",
     "role": "Systems Engineer // Security Researcher",
-    "tagline": "Building infrastructure. Exploiting systems. Securing what matters.",
+    "tagline": "I build hardened systems, break weak assumptions, and report what actually matters.",
+    "rotatingRoles": [
+      "Security Researcher",
+      "CTF Player",
+      "Exploit Builder",
+      "Linux Systems Engineer",
+      "Network Recon Operator"
+    ],
     "github": "grim-sudo",
     "platform": "Arch / Kali / Debian",
     "toolset": "BlackArch · Metasploit · Burp Suite",
@@ -17,16 +24,16 @@ export const GRIM_DATA = {
     "available": true
   },
   "mission": {
-    "overview": "Systems engineer and security researcher specializing in Linux infrastructure, container orchestration, and offensive security operations.\n\nExperienced in designing and operating resilient systems while exploring attack surfaces across modern infrastructure. Works extensively with containerized environments, network architectures, and security testing methodologies.\n\nOperates at the intersection of DevOps engineering and adversarial security research, combining infrastructure development with offensive security experimentation to better understand and secure complex systems.",
+    "overview": "I engineer Linux-first infrastructure that stays up under pressure.\nI run offensive simulations to expose weak links before attackers do.\nI move between DevOps and adversarial testing without context switching.",
     "platforms": [
       "Arch Linux","Kali Linux","Debian","BlackArch","Ubuntu Server","Unix-like Systems"
     ],
     "focusAreas": [
-      "Penetration Testing",
-      "Open Source Intelligence (OSINT)",
-      "Network Reconnaissance & Enumeration",
-      "Linux Systems Engineering & Kernel Development",
-      "Offensive Security Labs & CTF Operations"
+      "Attack Surface Mapping",
+      "OSINT & Target Profiling",
+      "Network Recon + Enumeration",
+      "Linux Internals & Kernel Work",
+      "Red Team Labs / CTF Ops"
     ],
     "toolset": [
       "Metasploit","Burp Suite","Nmap","Docker","Kubernetes","Shodan",
@@ -127,23 +134,23 @@ export const GRIM_DATA = {
   "projects": [
     {
       "name": "lost_and_found_webapp",
-      "desc": "Firebase-backed web app with real-time sync and full user auth flow.",
+      "desc": "Real-time Firebase app with auth, moderated submissions, and production-ready sync.",
       "tags": ["firebase", "js", "react"],
       "badge": "live",
       "url": "https://github.com/grim-sudo"
     }
   ],
   "achievements": [
-    { "label": "recon_operator",       "desc": "Internal network scanning and full enumeration in isolated lab environments.",                 "type": "red" },
-    { "label": "web_deployer",         "desc": "Shipped a Firebase-backed web app with real-time sync and user authentication.",               "type": "" },
-    { "label": "kernel_explorer",      "desc": "Linux kernel modules and OS internals at the system call level.",                              "type": "red" },
-    { "label": "firewall_warden",      "desc": "Automated firewall engine with live threat intel feed integration.",                           "type": "" },
-    { "label": "python_serpent",       "desc": "Custom recon toolkit — port scanning, OS fingerprinting, JSON output.",                        "type": "" },
-    { "label": "net_phantom",          "desc": "Deep knowledge of TCP/IP, subnetting and protocol-level packet analysis.",                     "type": "red" },
-    { "label": "container_breaker",    "desc": "Explored container escape scenarios and Kubernetes privilege boundaries",                       "type": "red" },
-    { "label": "packet_sniffer",       "desc": "Deep packet inspection and traffic analysis using Wireshark and tcpdump.",                     "type": "" },
-    { "label": "automation_engineer",  "desc": "Developed Python automation tools for reconnaissance and reporting.",                          "type": "" },
-    { "label": "threat_hunter",        "desc": "Investigated attack surfaces and vulnerabilities in controlled lab environments",               "type": "" },
-    { "label": "arch_operator",        "desc": "Daily-driver Arch Linux environment with custom kernel tuning and tooling.",                   "type": "" }
+    { "label": "recon_operator",       "desc": "Mapped internal lab networks fast and clean.",                                 "hover": "Found high-value pivot points across segmented subnets.", "type": "red" },
+    { "label": "web_deployer",         "desc": "Shipped a full-stack app with auth and live sync.",                            "hover": "Production flow included hardened auth routes and abuse controls.", "type": "" },
+    { "label": "kernel_explorer",      "desc": "Worked with Linux internals at syscall depth.",                                "hover": "Built stronger intuition for privilege boundaries and process behavior.", "type": "red" },
+    { "label": "firewall_warden",      "desc": "Automated firewall rules with threat intel hooks.",                            "hover": "Turned noisy indicators into real-time blocking decisions.", "type": "" },
+    { "label": "python_serpent",       "desc": "Built recon tooling for scans, fingerprints, and JSON output.",                "hover": "Cut repetitive recon steps into one repeatable pipeline.", "type": "" },
+    { "label": "net_phantom",          "desc": "Strong TCP/IP and packet-level troubleshooting under pressure.",               "hover": "From subnet math to packet captures, no blind spots in the path.", "type": "red" },
+    { "label": "container_breaker",    "desc": "Tested container escape paths and K8s privilege boundaries.",                 "hover": "Focused on misconfig chains, namespace leaks, and workload exposure.", "type": "red" },
+    { "label": "packet_sniffer",       "desc": "Performed deep traffic analysis with Wireshark and tcpdump.",                  "hover": "Correlated packet traces to root-cause incidents faster.", "type": "" },
+    { "label": "automation_engineer",  "desc": "Automated recon and reporting to remove manual drag.",                         "hover": "Delivered reusable scripts for repeatable investigations.", "type": "" },
+    { "label": "threat_hunter",        "desc": "Hunted vulnerabilities through controlled adversarial labs.",                  "hover": "Validated attack paths and turned findings into hardening actions.", "type": "" },
+    { "label": "arch_operator",        "desc": "Ran Arch daily with custom kernel and system tuning.",                         "hover": "Maintained a stable, performance-tuned workstation for offensive workflows.", "type": "" }
   ]
 }

@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
 const NAV_ITEMS = [
-  { label: 'MISSION',  id: 'mission'  },
-  { label: 'SKILLS',   id: 'skills'   },
-  { label: 'ARSENAL',  id: 'arsenal'  },
-  { label: 'TERMINAL', id: 'terminal' },
-  { label: 'NETWORK',  id: 'network'  },
-  { label: 'CONTACT',  id: 'contact'  },
+  { label: 'WHAT I DO',   id: 'mission'  },
+  { label: 'OPERATE',     id: 'skills'   },
+  { label: 'BUILDS',      id: 'arsenal'  },
+  { label: 'SHELL',       id: 'terminal' },
+  { label: 'LAB MAP',     id: 'network'  },
+  { label: 'COMMS',       id: 'contact'  },
 ]
 
 function goTo(id) {
