@@ -51,13 +51,13 @@ export default function Mission({ data }) {
 
       <div className="mission-grid">
         {/* OVERVIEW */}
-        <div className="mission-block reveal">
+        <div className="mission-block reveal full-width-block snapshot-block">
           <p className="mb-label">MISSION SNAPSHOT</p>
           <div className="mb-body">
-            <strong>In Plain Terms</strong>
-            <div className="mb-overview-lines">
+            <strong style={{ fontSize: '1.4rem', marginBottom: '1.2rem', color: 'var(--g)' }}>In Plain Terms</strong>
+            <div className="mb-overview-lines" style={{ gap: '12px' }}>
               {overviewLines.map((line, i) => (
-                <p key={i} className="mb-overview-line" style={{ '--line-delay': `${i * 0.08}s` }}>
+                <p key={i} className="mb-overview-line" style={{ '--line-delay': `${i * 0.08}s`, fontSize: '1.1rem', paddingLeft: '16px' }}>
                   {line}
                 </p>
               ))}
@@ -66,9 +66,9 @@ export default function Mission({ data }) {
         </div>
 
         {/* FOCUS AREAS */}
-        <div className="mission-block reveal">
+        <div className="mission-block reveal full-width-block">
           <p className="mb-label">OPERATION LANES</p>
-          <div className="mb-body">
+          <div className="mb-body" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '12px' }}>
             {focusAreas.map((f, i) => (
               <div
                 key={i}
@@ -80,8 +80,8 @@ export default function Mission({ data }) {
                 <span>{f}</span>
               </div>
             ))}
-            <p className="mb-focus-hint">{focusHint}</p>
           </div>
+          <p className="mb-focus-hint" style={{ marginTop: '16px' }}>{focusHint}</p>
         </div>
 
         {/* PLATFORMS & TOOLS COMBINED FOR WIDER LAYOUT */}
